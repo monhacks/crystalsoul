@@ -13,6 +13,7 @@ gfx/pokemon/*/*.animated.tilemap
 gfx/pokemon/*/bitmask.asm
 gfx/pokemon/*/frames.asm
 gfx/pokedex/*.bin
+*.gcpal
 
 # compiled tilesets
 data/tilesets/*_collision.bin
