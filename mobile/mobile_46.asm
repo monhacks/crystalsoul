@@ -6444,13 +6444,13 @@ Function11b267:
 	ld [hl], $ef
 	ret
 
-asm_11b26a
+asm_11b26a:
 	xor a
 	ld [bc], a
 	ld [hl], $7f
 	ret
 
-asm_11b26f
+asm_11b26f:
 	ld a, $2
 	ld [bc], a
 

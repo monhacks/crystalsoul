@@ -138,8 +138,8 @@ _CheckNextAchievementCall:
 	db 54
 	db 60
 	db 67
-	db 74 
+	db 74
 
-PRINTT "\n"
-PRINTV NUM_EVENTS
-PRINTT "\n"
+PRINT "\n"
+PRINT NUM_EVENTS
+PRINT "\n"

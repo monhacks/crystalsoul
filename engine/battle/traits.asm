@@ -4810,9 +4810,9 @@ OneShotTraits:
 	db TRAIT_SUPER_EFFECTIVE_RAISE_STAT
 	db -1
 
-PRINTT "Trait constants left: "
-PRINTV $FF - TRAIT_COUNT
-PRINTT "\n"
+PRINT "Trait constants left: "
+PRINT $FF - TRAIT_COUNT
+PRINT "\n"
 
 SetFiveTurns:
 	call GetMoveID
