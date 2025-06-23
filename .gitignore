@@ -6,6 +6,8 @@ publish/**
 # generated
 *.tx
 *.o
+*.1bpp
+*.2bpp
 
 # precompiled python
 *.pyc
@@ -29,6 +31,7 @@ publish/**
 # rgbds extras
 *.map
 *.sym
+
 
 # compare.sh
 baserom.txt
