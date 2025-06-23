@@ -43,14 +43,14 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
-clean:
+clean: tidy
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
 
 tidy:
-	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms)
@@ -59,15 +59,17 @@ compare: $(roms)
 tools:
 	$(MAKE) -C tools/
 
-
 $(crystal_obj):   RGBASMFLAGS = -D _CRYSTAL -D _DEBUG
 $(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL -D _CRYSTAL11
+
+rgbdscheck.o: rgbdscheck.asm
+	$(RGBASM) -o $@ $<
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
-$1: $2 $$(shell tools/scan_includes $2)
+$1: $2 $$(shell tools/scan_includes $2) | rgbdscheck.o
 	$$(RGBASM) $$(RGBASMFLAGS) -L -o $$@ $$<
 endef
 
