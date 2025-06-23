@@ -62,4 +62,6 @@ bank_ends.txt
 
 # local tools
 rgbds/
+# ignore symlink too
+rgbds 
 deploy.sh
